@@ -237,7 +237,7 @@ function Sidebar(props) {
 
 ## Add an Event Listener
 
-Now we'll add an event listener to to listen for a click on the category name in the sidebar.
+Now we'll add an event listener to listen for a click on the category name in the sidebar.
 
 Add an `onClick` attribute to the `li` element and set its value to the `handleCategoryClick` function.
 
