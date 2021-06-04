@@ -199,11 +199,11 @@ class MainPage extends React.Component {
 
 ## Triggering a State Change
 
-Our goal is to have a user click on one of the caterories and have state update automatically.
+Our goal is to have a user click on one of the caterories and have state update automatically. We'll add an event listener to each one of the category names to listen for a click.
 
 ## Create a Handler Function
 
-Now we'll add a method to our `MainPage` component who's job it will be to update state. For now we'll just have the method log out a message to the console.
+But first we'll create a function that will handle that click event.
 
 Define a function called `handleCategoryClick` inside the `Sidebar` component.
 ```js
