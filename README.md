@@ -119,7 +119,7 @@ class MainPage extends React.Component {
 ...
 ```
 
-We can store any values we want in this state object, except functions. We can store booleans, numbers, strings, arrays, and even other objects.
+We can store any values we want in this state object. We can store booleans, numbers, strings, arrays, and even other objects.
 
 For our use cases, we only need to store the category index of the curruently active category. We'll see why in a moment.
 
