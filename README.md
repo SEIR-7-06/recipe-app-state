@@ -23,9 +23,15 @@ The real goal is to allow the user to click on a cateogry in the sidebar and sho
 
 ### Think Back to jQuery
 
+Think back to how we would do this with vanilla JavaScript (the DOM API).
+
+With vanilla JS we would add an event listener to each of the category names in the sidebar, and when each one was clicked, swap out the content on the right hand side with the proper content for that category.
+
+
+<!-- [with jquery]
 Think back to how we might do this with jQuery or vanilla JavaScript (the DOM API).
 
-With jQuery or with vanilla JS we would add an event listener to each of the category names in the sidebar, and when each one was clicked, swap out the content on the right hand side with the proper content for that category.
+With jQuery or with vanilla JS we would add an event listener to each of the category names in the sidebar, and when each one was clicked, swap out the content on the right hand side with the proper content for that category. -->
 
 ## Introducing State
 
