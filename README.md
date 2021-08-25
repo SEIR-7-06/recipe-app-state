@@ -1,8 +1,9 @@
 ## Recipe App: Adding State
 
-## Learning Objectives
 
 ![react art](./images/react-art.jpg)
+
+## Learning Objectives
 
 - Set up state in a React app with many components
 - pass state down as props to child components
