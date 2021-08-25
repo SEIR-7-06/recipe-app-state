@@ -21,7 +21,7 @@ The real goal is to allow the user to click on a cateogry in the sidebar and sho
 
 ![Switching Categories](./images/swap-category.png)
 
-### Think Back to jQuery
+### Think Back to Unit 1
 
 Think back to how we would do this with vanilla JavaScript (the DOM API).
 
