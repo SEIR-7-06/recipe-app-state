@@ -2,8 +2,11 @@
 
 ## Learning Objectives
 
-- Understand how state is used to manage a component that changes over time
-- Set up state for a component
+- Set up state in a React app with many components
+- pass state down as props to child components
+- Update state by listening to DOM events in child components
+
+![react art](./images/react-art.jpg)
 
 ## Manually Changing Data on the Page
 
