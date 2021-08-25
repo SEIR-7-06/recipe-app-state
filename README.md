@@ -25,31 +25,32 @@ The real goal is to allow the user to click on a cateogry in the sidebar and sho
 
 Think back to how we would do this with vanilla JavaScript (the DOM API).
 
-With vanilla JS we would add an event listener to each of the category names in the sidebar, and when each one was clicked, swap out the content on the right hand side with the proper content for that category.
-
+With vanilla JS we would add an event listener to each of the category names in the sidebar, and when each one was clicked, manually swap out the content on the right hand side with the proper content for that category.
 
 <!-- [with jquery]
 Think back to how we might do this with jQuery or vanilla JavaScript (the DOM API).
 
 With jQuery or with vanilla JS we would add an event listener to each of the category names in the sidebar, and when each one was clicked, swap out the content on the right hand side with the proper content for that category. -->
-
+<!-- 
 ## Introducing State
 
 State is a concept we are actually already familiar with.
 
-You may hear someone refer to "the state of the country" or the "state of affairs". Or perhaps the "state of my bedroom". Any of these things could be in many different states. If we were to describe the state of a bedroom we could say that the bedroom is clean or the bedroom is messy.
+You may hear someone refer to "the state of the country" or the "state of affairs". Or perhaps the "state of my bedroom". Any of these things could be in many different states. If we were to describe the state of a bedroom we could say that the bedroom is clean or the bedroom is messy. -->
 
 ## React State
 
-In the same way, our React components could be in many different states. For example, in our Recipe App, we could be displaying the "Soups" category, or we could be displaying the "Breakfast" category. These would be two different states.
+<!-- In the same way, our React components could be in many different states. For example, in our Recipe App, we could be displaying the "Soups" category, or we could be displaying the "Breakfast" category. These would be two different states. -->
 
-We'll simply use React state to describe the current state of our component.
+We're going to be exploring how to do this the React way. When a user clicks the 'Soups' category, we'll simply update state to say we want to show the 'Soups' categogry. And then React will automatically show the data for the 'Soups' category on the page.
 
-Once we've set it all up, whenever we want to change something on the page, we update our component's state and the component will update itself to display the proper information.
+We'll simply use React state to describe the current state of our application.
+
+Once we've set it all up, whenever we want to change something on the page, we update our component's state and the component will update itself.
 
 ## Converting to a Class-Based Component
 
-Let's take a look at what this will look like in code and navigate to `MainPage.js`.
+Let's take a look at what this will look like in code. We'll start by navigating to `MainPage.js`.
 
 In order to add state to our component, we are going convert it from a **"Functional Component"** into a **"Class-based Component"**.
 
