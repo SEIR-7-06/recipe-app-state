@@ -164,18 +164,18 @@ Try updating the `categoryIndex` from `0` to `1` or `2`. You should see the user
 <br/>
 
 <details>
-  <summary>Hungry for More</summary>
+  <summary>Hungry for More: React Hooks</summary>
 
   In 2019, React introduced [**React Hooks**](https://reactjs.org/docs/hooks-intro.html), which allow us to add state to a **Functional Component** and allows us to not use classes.
 
-  Most companies won't necessarily convert their existing React codebase to using **Functional Components**. And for this reason **Class-based components** for adding state in React is still very prominent in the industry and something you will want to be familiar with.
+  Most companies won't be converting their entire existing React codebase to using **Functional Components**. Often times companies use React Hooks for new projects. And for this reason **Class-based components** for adding state in React is still very prominent in the industry. **Class-based components** are something you will want to be familiar with and you will encounter in interview settings if you are going for a React position.
 </details>
 
 <br/>
 
 ## Creating a Function to Update State
 
-We'll want a function that we can call that will update our component's state for us.
+Alright, we're storing the current category Index in state, however, at this point we still have to change it manually. We'll want a function that we can call that will update our component's state for us.
 
 Create an arrow function called `updateCategoryIndex` in the `MainPage` component right under where we set up our component's state. We'll discuss in more detail why we are using an arrow function here. 
 
