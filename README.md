@@ -181,6 +181,16 @@ Create an arrow function called `updateCategoryIndex` in the `MainPage` componen
 
 ```js
 ...
+<Sidebar 
+  categories={categoryData} 
+  updateCategoryIndex={this.updateCategoryIndex} 
+/>
+...
+```
+
+Here it is all together.
+```js
+...
 
 class MainPage extends React.Component {
   state = {
@@ -194,7 +204,7 @@ class MainPage extends React.Component {
   render() {
     return (
       <div className="main-page">
-        <Sidebar categories={categoryData} updateCategoryIndex={this.updateCategoryIndex} />
+        <Sidebar categories={categoryData} />
         <main className="category-info">
           <CategoryDetail category={categoryData[this.state.categoryIndex]} />
           <RecipesList recipes={categoryData[this.state.categoryIndex].recipes} />
@@ -216,7 +226,7 @@ Our goal is to have a user click on one of the caterories and have state update 
 
 But first we'll create a function that will handle that click event.
 
-Define a function called `handleCategoryClick` inside the `Sidebar` component.
+Inside the `Sidebar` component define a function called `handleCategoryClick`.
 ```js
 ...
 
@@ -285,14 +295,18 @@ function Sidebar(props) {
 ...
 ```
 
-**Test it out!** In the browser, try clicking on a category name in the sidebar. We should see our `console.log` message on each click of a category name! We're successfully triggering some functionality on a click event!
+Test it out! In the browser, try clicking on a category name in the sidebar. We should see our `console.log` message on each click of a category name. We're successfully triggering some functionality on a click event.
 
-It's important to note that we do not have to call the `handleCategoryClick` function here. We are **not** using parentheses to invoke the function. We're simply passing in a function definition. This will be called later when the click event takes place.
+It's important to note that we do not have to call the `handleCategoryClick` function here. We are **not** using parentheses to invoke the function. We're simply passing in a function definition. If we were to invoke the function by using parentheses the function would be called right away when the page loads, which is not what we want.
 
-Note that with **React** `onClick` is camel cased. If this were vanilla JavaScript it would be in all lowercase instead.
+By passing a function definition, this will be called later when the click event takes place.
+
+Note that with React `onClick` is camel cased. If this were vanilla JavaScript it would be in all lowercase instead.
 <details>
-  <summary>Hungry for more</summary>
-  The reason for using the different syntax is that React wraps the event handlers in something called a synthetic event. Certain DOM events have a slightly different behavior across different browsers. React's synthetic event will take these inconsistencies into account and give our event listeners uniform behavior across all browsers.
+  <summary>Hungry for more: React Synthetic Events</summary>
+  React wraps the event handlers in something called a synthetic event. Certain DOM events have a slightly different behavior across different browsers. React's synthetic event will take these inconsistencies into account and give our event listeners uniform behavior across all browsers.
+
+  ![React Sythetic Events](https://reactjs.org/docs/events.html)
 </details>
 
 <br/>
@@ -340,8 +354,11 @@ function handleCategoryClick(categoryIdx) {
 ...
 ```
 
-Now we'll pass the index to `handleCategoryClick` function in the event handler.
+The `handleCategoryClick` function is now expecting an index. We'll want to pass it an index when we call it. 
 
+What we're about to do here will feel a little funky. In your `onClick` event listener well wrap `handleCategoryClick` in an arrow function. Inside the arrow function pass `handleCategoryClick` the index.
+
+See the full code here.
 ```js
 ...
 
@@ -360,13 +377,13 @@ const categoriesList = props.categories.map((category, index) => {
 ...
 ```
 
-**Try it out!**
+Try it out!
 
-We should now see the category index being printed to the console on click as well!
+Try clicking a category in the sidebar. We should now see the category index being printed to the console!
 
 Notice how we're wrapping the `handleCategoryClick` function in an **arrow function**. We aren't able to pass a *function call* to our event handler but we are allowed to pass it a *function definition*. By wrapping `handleCategoryClick` in an **arrow function** we're passing a function definition. This arrow function will be called when the category is clicked on, which will, in turn, call `handleCategoryClick` passing in the index.
 
-Do not worry if that doesn't quite make sense yet! This concept takes some time to get used to.
+Do not worry if that doesn't quite make sense yet. This concept takes some time to wrap your head around.
 
 ## Passing a Function as Props
 
@@ -374,17 +391,30 @@ Let's make our way back to the `MainPage.js` file. For understanding this next s
 
 Now our `Sidebar` component we're listening for a click on a category name which is awesome! Our ultimate goal, though, is to update the state of the `MainPage` component when a category is clicked on.
 
-The `updateCategoryIndex` function is going to be tasked with updating state. We want to call this function when our click event gets triggered.
+The `updateCategoryIndex` function from `MainPage` is going to be tasked with updating state. We want to call this function when our click event gets triggered inside our click handler in `Sidebar`. Take a moment to soak that in... 
 
-In order to make this work, pass the `updateCategoryIndex` function as a **prop** to the `Sidebar` component in our **JSX** in the **render** function.
+```js
+function handleCategoryClick(index) {
+  console.log('** A category was clicked **');
+  updateCategoryIndex(index)
+}
+```
 
+In order to make this work, in `MainPage` pass the `updateCategoryIndex` function as a **prop** to the `Sidebar` component in our **JSX**.
+
+This is what it would look like.
+
+In MainPage.js
 ```js
 ...
 
 render() {
     return (
       <div className="main-page">
-        <Sidebar categories={categoryData} updateCategoryIndex={this.updateCategoryIndex} />
+        <Sidebar 
+          categories={categoryData} 
+          updateCategoryIndex={this.updateCategoryIndex} 
+        />
         <main className="category-info">
           <CategoryDetail category={categoryData[this.state.categoryIndex]} />
           <RecipesList recipes={categoryData[this.state.categoryIndex].recipes} />
@@ -398,9 +428,11 @@ render() {
 
 ## Triggered the Prop Function on Click
 
-Inside `Sidebar.js` we now have access to the `updateCategoryindex` function as a prop.
+Inside `Sidebar.js` we now have access to the `updateCategoryindex` function as a **prop**.
 
-We'll call the `updateCategoryIndex` function in our click handler function passing it the category index.
+Take a moment to soak that in...
+
+We'll call the `updateCategoryIndex` function in our click handler function. `updateCategoryIndex` is expecting an index so we'll pass it the index as well.
 
 ```js
 ...
@@ -420,9 +452,9 @@ In the browser, try clicking on a category name now. On click we're triggering t
 
 Now for the moment we've all been waiting for. We want to update the state of the `MainPage` component on click!
 
-In `MainPage.js` let's change the `updateCategoryIndex` function to update state.
+In `MainPage.js` let's have the `updateCategoryIndex` function update state.
 
-- Then we'll call `this.setState()` passing in an object with all of the state properties we want to change.
+In `updateCategoryIndex` call `this.setState()` passing in an object with all of the state properties we want to change.
 
 ```js
 ...
@@ -434,19 +466,17 @@ updateCategoryIndex = (index) => {
 ...
 ```
 
-In our case we want to update the `categoryIndex` property in state so we'll pass in an object with a key of `categoryIndex` and set the value to the index coming into the function as a parameter.
-
-Every component has access to a method called `setState` that we can call to update the component's state object.
+Every class component has access to a method called `setState` that we can call to update the component's state object.
 
 As a rule, anytime a function is triggered by an event, like a click event, we'll want to use an arrow function in our class.
 
-We use an arrow function here to ensure that the `this` keyword points the instance of the `MainPage` class. If we used a regular ES5 function here, as we are using for our `render` method, the `this` keyword would be lost and we would not be pointing to the `MainPage` instance and we wouldn't have access to `setState`. If you're curious try logging out `this` inside the function and see what you get with an arrow function and then with an ES5 function.
+We use an arrow function here to ensure that the `this` keyword points the instance of the `MainPage` class. If we used a regular ES5 function here like the `render` method, for example, we end up losing the `this` keyword and we won't be able to do things like `this.setState()`. If you're curious try logging out `this` inside the function and see what you get with an arrow function and then with an ES5 function.
 
-**Now try it out!**
+Now try it out!
 
 Try clicking on a category in the sidebar and see what happens!
 
-It works! When we click on a category, we see the info for that category show up on the right hand side of the page!
+If all goes well, when we click on a category, we see the info for that category show up on the right hand side of the page!
 
 But why does this work?
 
@@ -486,9 +516,11 @@ Now that we are getting to see an example of React state in action let's talk ab
 
 *We'll use state to store any information in our application that will change over time.*
 
-In this way React takes the place of jQuery. We can use React to dynamically change what is showing up on the page without having to fully refresh the page.
+<!-- In this way React takes the place of jQuery. We can use React to dynamically change what is showing up on the page without having to fully refresh the page. -->
 
-### Strings in State
+In this way React takes the place of using the DOM API to change elements on the page. We can use React to dynamically change what is showing up on the page by simply updating the state of our application.
+
+<!-- ### Strings in State
 
 If we were to add a button on our app to switch our app from a light theme to a dark theme, we might represent that as a string.
 
@@ -566,8 +598,17 @@ state = [
     completed: true
   },
 ];
-```
+``` -->
 
 At the moment our category data is being stored as an array of objects. However, our category data is not changing over time. We are not able to create categories or recipes yet, or delete them so we don't need to store the category data in state.
 
 We will get into performing CRUD operations on categories and also retrieving this data from an API. In this case we would store the category data in state to manage all of these changes.
+
+
+## Additional Resources
+
+[React Documentation](https://reactjs.org/)
+
+[React State](https://reactjs.org/docs/state-and-lifecycle.html)
+
+[React Tic-Tac-Toe Tutorial](https://reactjs.org/tutorial/tutorial.html#setup-option-2-local-development-environment)
