@@ -161,8 +161,6 @@ Try updating the `categoryIndex` from `0` to `1` or `2`. You should see the user
 
 **Any time a component's state is updated, the component will re-render.** And because our component is referencing state, it will pull in the updated values and display the updated data in the user interface.
 
-<br/>
-
 <details>
   <summary>Hungry for More: React Hooks</summary>
 
@@ -170,8 +168,6 @@ Try updating the `categoryIndex` from `0` to `1` or `2`. You should see the user
 
   Most companies won't be converting their entire existing React codebase to using **Functional Components**. Often times companies use React Hooks for new projects. And for this reason **Class-based components** for adding state in React is still very prominent in the industry. **Class-based components** are something you will want to be familiar with and you will encounter in interview settings if you are going for a React position.
 </details>
-
-<br/>
 
 ## Creating a Function to Update State
 
