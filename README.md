@@ -173,16 +173,7 @@ Try updating the `categoryIndex` from `0` to `1` or `2`. You should see the user
 
 Alright, we're storing the current category Index in state, however, at this point we still have to change it manually. We'll want a function that we can call that will update our component's state for us.
 
-Create an arrow function called `updateCategoryIndex` in the `MainPage` component right under where we set up our component's state. We'll discuss in more detail why we are using an arrow function here. 
-
-```js
-...
-<Sidebar 
-  categories={categoryData} 
-  updateCategoryIndex={this.updateCategoryIndex} 
-/>
-...
-```
+Create an arrow function called `updateCategoryIndex` in the `MainPage` component right under where we set up our component's state. We'll discuss in more detail why we are using an arrow function. 
 
 Here it is all together.
 ```js
